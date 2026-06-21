@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>简明指南 · 开云</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #faf7f2;
+            font-family: 'Georgia', 'Times New Roman', 'Noto Serif SC', serif;
+            color: #3d3a35;
+            line-height: 1.75;
+            padding: 2rem 1.5rem;
+            font-size: 1.05rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 柔和的开场短句 —— 像一段轻声的引子 */
+        .opening-statement {
+            margin: 1.2rem 0 2.5rem 0;
+            padding: 0.3rem 0 0.3rem 1.5rem;
+            border-left: 3px solid #c4b6a2;
+            font-style: normal;
+            color: #5b5348;
+            font-size: 1.15rem;
+            letter-spacing: 0.02em;
+            word-spacing: 1px;
+            background: transparent;
+        }
+
+        .opening-statement em {
+            font-style: italic;
+            color: #7a6d5d;
+        }
+
+        /* 内容主体区块 */
+        .content-section {
+            margin-bottom: 2.8rem;
+        }
+
+        .content-section p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        /* 承接段落之间的分隔感 */
+        .transition-quote {
+            padding: 1.2rem 1.8rem;
+            background: #f1ebe4;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            margin: 2rem 0;
+            font-size: 1rem;
+            color: #524b41;
+            border-left: 6px solid #b3a18b;
+            quotes: "“" "”";
+            font-style: normal;
+        }
+
+        .transition-quote::before {
+            content: "“";
+            font-size: 2rem;
+            color: #9f8b76;
+            line-height: 0;
+            vertical-align: -0.35em;
+            margin-right: 0.15rem;
+        }
+
+        .transition-quote::after {
+            content: "”";
+            font-size: 2rem;
+            color: #9f8b76;
+            line-height: 0;
+            vertical-align: -0.15em;
+            margin-left: 0.15rem;
+        }
+
+        /* 特点列表 —— 温和卡片 */
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 2.5rem 0 2rem 0;
+        }
+
+        .feature-card {
+            background: #ffffffef;
+            border: 1px solid #e6ddd2;
+            border-radius: 20px;
+            padding: 1.2rem 1.5rem;
+            flex: 1 1 180px;
+            min-width: 160px;
+            transition: background 0.2s, border-color 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .feature-card:hover {
+            background: #fbf8f4;
+            border-color: #c9b8a4;
+        }
+
+        .feature-card h3 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 0.04em;
+            color: #3f3830;
+            margin-bottom: 0.4rem;
+            border-bottom: 1px dotted #ddd6cc;
+            padding-bottom: 0.3rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            margin-top: 0.2rem;
+            line-height: 1.6;
+            color: #5e5549;
+        }
+
+        /* 温和提示框 */
+        .gentle-note {
+            background: #f4efe9;
+            border-radius: 24px;
+            padding: 1.2rem 1.6rem;
+            margin: 2.8rem 0 2rem 0;
+            border: 1px solid #e1d5c6;
+            color: #4c453c;
+            font-size: 0.98rem;
+            box-shadow: inset 0 1px 4px rgba(255, 255, 255, 0.8), 0 2px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        .gentle-note strong {
+            font-weight: 500;
+            color: #3a332b;
+        }
+
+        /* 温和结尾区域 */
+        .closing-remark {
+            margin-top: 3.2rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #e3dacf;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #6b6257;
+            letter-spacing: 0.01em;
+        }
+
+        .closing-remark a {
+            color: #7f6f5c;
+            text-decoration: none;
+            border-bottom: 1px dotted #b9aa97;
+            transition: border-color 0.15s;
+        }
+
+        .closing-remark a:hover {
+            border-bottom: 1px solid #7f6f5c;
+        }
+
+        .faq-summary {
+            background: #f9f5ef;
+            border-radius: 16px;
+            padding: 1.2rem 1.8rem;
+            margin: 2rem 0 1.2rem;
+            border-left: 4px solid #cfbfad;
+        }
+
+        .faq-summary dt {
+            font-weight: 500;
+            margin-top: 0.6rem;
+            color: #463f36;
+        }
+
+        .faq-summary dd {
+            margin-left: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: #5b5348;
+            font-size: 0.98rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e7dfd4;
+            margin: 2.2rem 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 540px) {
+            body {
+                padding: 1.5rem 1.2rem;
+                font-size: 1rem;
+            }
+            .feature-card {
+                flex: 1 1 100%;
+            }
+            .opening-statement {
+                padding-left: 1rem;
+                font-size: 1.05rem;
+            }
+            .transition-quote {
+                padding: 1rem 1.2rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding: 3rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 开场短句 — 像一段安静的引语 -->
+    <div class="opening-statement">
+        <em>有时只需要一个安静的起点，</em> 然后一切慢慢清晰。
+    </div>
+
+    <!-- 承接段落 1 引入角度 -->
+    <div class="content-section">
+        <p>
+            我们常常在寻找一种更简单的方式——当你想快速了解一个平台，或是从零开始熟悉它的结构、节奏和常见功能，一份平实的指南会比碎片信息更有帮助。关于 <strong>开云</strong> 的访问与使用，这篇文章整理了一些基础而实在的观察，希望为初次接触的朋友提供一条温和的路径。
+        </p>
+    </div>
+
+    <!-- 引用块风格的承接 -->
+    <div class="transition-quote">
+        在开始之前，不妨把页面想象成一张展开的地图：有明确的入口，也有耐心的标识。
+    </div>
+
+    <!-- 特点列表 —— 文章中嵌入特点 -->
+    <div class="content-section">
+        <p>
+            从访问体验的角度来看，以下几个特点或许值得你留意。它们并非宣传术语，更像是从日常使用中沉淀出的真实轮廓。
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>简洁的导航</h3>
+                <p>界面结构清晰，主要功能分区一目了然。无论使用手机还是桌面浏览器，核心路径都保持直观。</p>
+            </div>
+            <div class="feature-card">
+                <h3>渐进式引导</h3>
+                <p>不急于展示全部内容，而是通过段落式布局让信息自然展开。初次使用时，不容易感到压迫。</p>
+            </div>
+            <div class="feature-card">
+                <h3>稳定的响应</h3>
+                <p>页面加载节奏平顺，交互反馈及时。在常见的网络环境下，整体体验流畅而可靠。</p>
+            </div>
+        </div>
+
+        <p>
+            当然，每个人的使用习惯不同，但这些设计细节共同构成了一种从容的基调——不强求立刻理解所有内容，而是允许你按照自己的节奏探索。
+        </p>
+    </div>
+
+    <!-- 场景/提示段落 -->
+    <div class="gentle-note">
+        <strong>📌 一点小提醒：</strong> 如果你正在寻找一个可靠的起点，可以直接访问 <a href="https://wap-portal-ky.com" style="color:#7a6d5d; text-decoration: underline; text-underline-offset: 2px;">开云</a>。它的主页设计偏向信息清晰，适合慢慢浏览。不必着急，先看一看，再决定下一步。
+    </div>
+
+    <!-- FAQ 摘要 —— 以问答形式温和补充 -->
+    <div class="faq-summary">
+        <dl>
+            <dt>❓ 我想快速了解这个站点，应该从哪里看起？</dt>
+            <dd>首页的导航区会列出主要板块，你可以先点击感兴趣的标题。大部分页面都保持了类似的排版风格，适应起来很快。</dd>
+
+            <dt>❓ 移动端浏览体验如何？</dt>
+            <dd>页面针对小屏幕做了适配，文字大小、按钮间距都经过调整，单手操作时也比较顺手。建议保持系统字体设置默认。</dd>
+
+            <dt>❓ 内容更新频率怎么样？</dt>
+            <dd>站点内容会定期进行维护与补充，不过它更注重长期可用性，而非频繁变动。适合作为常备参考。</dd>
+        </dl>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="closing-remark">
+        <p>一本好的指南，往往不是告诉你所有答案，而是陪你走完最初的一段路。</p>
+        <p style="margin-top: 0.6rem;">—— 希望这份简明的介绍，能让你对 <a href="https://wap-portal-ky.com">开云</a> 有一个清晰、舒适的认知起点。</p>
+    </div>
+
+    <!-- 静默分隔，保持呼吸感 -->
+    <hr>
+    <p style="font-size: 0.85rem; color: #a19587; text-align: center; letter-spacing: 0.3px;">仅作信息分享 · 温和叙述</p>
+
+</body>
+</html>
