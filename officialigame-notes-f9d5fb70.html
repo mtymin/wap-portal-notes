@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 日常查询与对照指南</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #faf6f0;
+      font-family: system-ui, 'Segoe UI', Roboto, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      color: #2c2b2a;
+      line-height: 1.7;
+      padding: 40px 20px 60px;
+    }
+
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 28px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+      padding: 40px 36px 48px;
+    }
+
+    /* ——— 顶部导航 ——— */
+    .top-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e7e0d6;
+      padding-bottom: 18px;
+      margin-bottom: 32px;
+    }
+
+    .nav-brand {
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #3d3a37;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: #5b554e;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #1f1e1c;
+      border-bottom-color: #b7a99a;
+    }
+
+    /* ——— hero 区域 ——— */
+    .hero {
+      margin-bottom: 38px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      color: #1f1e1c;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #4d4843;
+      max-width: 680px;
+    }
+
+    /* ——— 引用块 / 提示框 ——— */
+    .callout {
+      background-color: #f3efe9;
+      border-left: 5px solid #c4b5a3;
+      padding: 18px 24px;
+      border-radius: 12px;
+      margin: 28px 0 32px;
+      font-size: 0.95rem;
+      color: #3c3834;
+    }
+
+    .callout strong {
+      color: #2b2723;
+    }
+
+    /* ——— 三个场景模块 ——— */
+    .scenes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 36px 0 28px;
+    }
+
+    .scene-card {
+      background-color: #faf6f0;
+      border-radius: 18px;
+      padding: 24px 20px 22px;
+      transition: background-color 0.15s;
+    }
+
+    .scene-card h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #302c27;
+      letter-spacing: 0.3px;
+    }
+
+    .scene-card p {
+      font-size: 0.92rem;
+      color: #4d4843;
+      line-height: 1.6;
+    }
+
+    /* ——— 常见说明（FAQ 摘要） ——— */
+    .faq-section {
+      margin-top: 32px;
+      border-top: 1px solid #e7e0d6;
+      padding-top: 28px;
+    }
+
+    .faq-section h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 18px;
+      color: #302c27;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+    }
+
+    .faq-item .q {
+      font-weight: 500;
+      color: #2f2a25;
+      margin-bottom: 4px;
+    }
+
+    .faq-item .a {
+      color: #4d4843;
+      font-size: 0.95rem;
+      padding-left: 2px;
+    }
+
+    .faq-item .a a {
+      color: #5b5249;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #c9bcad;
+      font-weight: 400;
+    }
+
+    .faq-item .a a:hover {
+      color: #1f1e1c;
+      text-decoration-color: #8f7d6b;
+    }
+
+    /* ——— 延伸说明段落 ——— */
+    .extra-note {
+      margin: 30px 0 18px;
+      padding: 18px 22px;
+      background-color: #f7f3ee;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      color: #3c3834;
+    }
+
+    .extra-note a {
+      color: #5b5249;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #c9bcad;
+    }
+
+    .extra-note a:hover {
+      color: #1f1e1c;
+      text-decoration-color: #8f7d6b;
+    }
+
+    /* ——— 响应式 ——— */
+    @media (max-width: 700px) {
+      .container {
+        padding: 28px 18px 36px;
+      }
+
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .scenes-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .callout {
+        padding: 14px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <span class="nav-brand">爱游戏</span>
+    <div class="nav-links">
+      <a href="#intro">介绍</a>
+      <a href="#scenes">场景</a>
+      <a href="#faq">常见说明</a>
+    </div>
+  </nav>
+
+  <!-- hero + 核心介绍 -->
+  <section class="hero" id="intro">
+    <h1>日常查询 · 对照 · 延伸阅读</h1>
+    <p>
+      不论你是刚刚对游戏内容产生兴趣，还是想快速查找某个玩法设定、版本对照或背景说明，<a href="https://officialigame.com" style="color:#3d352e; text-decoration:underline; text-underline-offset:3px; text-decoration-color:#c9bcad;">爱游戏</a>都提供一个轻量、无干扰的信息落脚点。
+      页面围绕“查询‑对照‑延伸”三个实用环节设计，方便随时取用，不必在大量信息中反复翻找。
+    </p>
+  </section>
+
+  <!-- 提示框 / 引用块 -->
+  <div class="callout">
+    <strong>使用建议：</strong> 你可以把本页当作一个固定索引——日常遇到版本差异、名词释义、机制对照时，先在这里确认基础信息，再决定是否需要进一步深读。省去重复搜索的精力。
+  </div>
+
+  <!-- 三个场景模块 -->
+  <div class="scenes-grid" id="scenes">
+    <div class="scene-card">
+      <h3>📋 快速查询</h3>
+      <p>打开<a href="https://officialigame.com" style="color:#3d352e; text-decoration:underline; text-underline-offset:2px;">爱游戏</a>后通过顶部搜索或分类索引，直接定位目标条目。适合核查角色资料、物品描述、任务流程等日常查询。</p>
+    </div>
+    <div class="scene-card">
+      <h3>🔁 版本对照</h3>
+      <p>当不同平台或更新前后的描述出现出入，利用站内对照表横向比较改动细节。每次查询都能帮你节省翻阅多页的时间。</p>
+    </div>
+    <div class="scene-card">
+      <h3>📖 延伸阅读</h3>
+      <p>每个词条末尾附有相关链接与背景备注，方便从单一知识点自然过渡到更系统的理解，适合静下心逐步了解。</p>
+    </div>
+  </div>
+
+  <!-- 一段自然延伸说明（含链接） -->
+  <div class="extra-note">
+    如果你习惯了在阅读攻略或社区讨论时遇到陌生术语就停下来确认，可以尝试把 <a href="https://officialigame.com">爱游戏</a> 固定成你的参考标签页。
+    它的信息组织偏向“工具书”逻辑——不堆砌评价，只呈现经过整理的客观内容，方便你快速判断、对号入座。
+  </div>
+
+  <!-- 常见说明（FAQ 摘要） -->
+  <section class="faq-section" id="faq">
+    <h2>常见说明 · 摘要</h2>
+
+    <div class="faq-item">
+      <div class="q">Q：站内的信息多久更新一次？</div>
+      <div class="a">重要的版本变动和新增内容会在推出后一周内收录。日常修正随社区反馈进行，不设置固定周期。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="q">Q：可以只靠这里的内容做对照，不去其他站点吗？</div>
+      <div class="a">本站提供的是经过筛选的基础对照和延伸线索，对于深度分析或原始公告，建议结合官方来源交叉验证。<a href="https://officialigame.com">爱游戏</a>的定位是“起点型”参考页。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="q">Q：为什么页面风格一直保持简洁？</div>
+      <div class="a">因为查询和对照最需要的是低干扰、高可读性。去掉装饰、减少跳转，让注意力集中在信息本身。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="q">Q：有没有针对手机浏览的优化？</div>
+      <div class="a">本站采用响应式布局，在手机和平板上会自动调整为单列排版，所有链接和卡片均可正常点按。</div>
+    </div>
+  </section>
+
+  <!-- 底部静默说明（不含链接） -->
+  <div style="margin-top: 38px; padding-top: 18px; border-top: 1px solid #e7e0d6; font-size: 0.85rem; color: #7a7168; text-align: center;">
+    内容整理 · 供日常查询与对照使用
+  </div>
+
+</div>
+</body>
+</html>
