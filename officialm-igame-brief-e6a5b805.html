@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 一处安静的入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f7fafc;
+      color: #1e293b;
+      line-height: 1.7;
+      padding: 2rem 1.2rem;
+      max-width: 820px;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 网格卡片背景装饰——极浅网格 */
+    .grid-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(44, 160, 130, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(44, 160, 130, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* 卡片容器（类似网格卡片，但更克制） */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin: 1.6rem 0;
+    }
+
+    .card-item {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(2px);
+      border: 1px solid rgba(44, 160, 130, 0.18);
+      border-radius: 20px;
+      padding: 1.6rem 1.8rem;
+      box-shadow: 0 4px 14px rgba(44, 160, 130, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .card-item:hover {
+      border-color: rgba(44, 160, 130, 0.35);
+      box-shadow: 0 8px 22px rgba(44, 160, 130, 0.08);
+    }
+
+    .card-item h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #0d3b35;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-item h3::before {
+      content: "◇";
+      color: #2ca082;
+      font-size: 1.1rem;
+      opacity: 0.6;
+    }
+
+    .card-item p {
+      font-size: 0.96rem;
+      color: #2d3f4a;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-item .meta {
+      font-size: 0.82rem;
+      color: #58757f;
+      margin-top: 0.6rem;
+      border-top: 1px dashed rgba(44, 160, 130, 0.15);
+      padding-top: 0.6rem;
+    }
+
+    /* 文章头部 */
+    .page-header {
+      margin-bottom: 0.8rem;
+    }
+
+    .page-header .pretitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #2ca082;
+      font-weight: 400;
+    }
+
+    .page-header h1 {
+      font-size: 2.2rem;
+      font-weight: 450;
+      line-height: 1.25;
+      color: #062823;
+      margin: 0.2rem 0 0.6rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .page-header .lead {
+      font-size: 1.05rem;
+      color: #2b5a51;
+      border-left: 4px solid #2ca082;
+      padding-left: 1.2rem;
+      margin-top: 0.25rem;
+      font-weight: 370;
+      max-width: 90%;
+    }
+
+    /* 引用块（类似提示） */
+    .quote-note {
+      background: #e6f3ef;
+      border-left: 5px solid #2ca082;
+      border-radius: 0 14px 14px 0;
+      padding: 1.2rem 1.6rem;
+      margin: 2rem 0 1.5rem 0;
+      font-size: 0.98rem;
+      color: #17433b;
+      box-shadow: 0 2px 6px rgba(44, 160, 130, 0.06);
+    }
+
+    .quote-note strong {
+      font-weight: 540;
+      color: #0f3e36;
+    }
+
+    .quote-note a {
+      color: #0a5c4d;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: rgba(44, 160, 130, 0.3);
+      font-weight: 470;
+    }
+
+    .quote-note a:hover {
+      text-decoration-color: #2ca082;
+    }
+
+    /* 正文段落 */
+    .body-text {
+      font-size: 1rem;
+      margin: 0.8rem 0 1rem 0;
+      padding: 0 0.2rem;
+      color: #1e3640;
+    }
+
+    .body-text p {
+      margin-bottom: 1.15rem;
+    }
+
+    .body-text a {
+      color: #136656;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: rgba(44, 160, 130, 0.2);
+      font-weight: 450;
+    }
+
+    .body-text a:hover {
+      color: #0f4d41;
+      text-decoration-color: #2ca082;
+    }
+
+    /* 访问句（小尾巴） */
+    .visit-line {
+      text-align: right;
+      font-size: 0.9rem;
+      color: #3d6b62;
+      border-top: 1px solid rgba(44, 160, 130, 0.15);
+      padding-top: 1.2rem;
+      margin-top: 1.2rem;
+      letter-spacing: 0.01em;
+    }
+
+    .visit-line span {
+      background: #e6f3ef;
+      padding: 0.2rem 0.6rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: #1d5e51;
+    }
+
+    /* 小型间距与响应 */
+    @media (max-width: 480px) {
+      body {
+        padding: 1.2rem 1rem;
+      }
+
+      .page-header h1 {
+        font-size: 1.7rem;
+      }
+
+      .page-header .lead {
+        font-size: 0.95rem;
+        padding-left: 0.9rem;
+        max-width: 100%;
+      }
+
+      .card-item {
+        padding: 1.2rem 1.2rem;
+      }
+
+      .card-item h3 {
+        font-size: 1.05rem;
+      }
+
+      .quote-note {
+        padding: 1rem 1.2rem;
+        font-size: 0.92rem;
+      }
+
+      .body-text {
+        font-size: 0.95rem;
+      }
+    }
+
+    /* 极简footer */
+    .footer-note {
+      margin-top: auto;
+      padding-top: 2rem;
+      font-size: 0.78rem;
+      color: #6d8a83;
+      border-top: 1px solid rgba(44, 160, 130, 0.08);
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <!-- 文章头部：标题 + 导语 -->
+  <header class="page-header">
+    <div class="pretitle">⟡ 一处安静的入口</div>
+    <h1>爱游戏 · 从起点到页面</h1>
+    <div class="lead">
+      人们常常寻找一个清晰、稳定的起点，来确认某个地方仍然存在。<br>
+      这个页面只是这样一处标记：它指向一个叫「爱游戏」的站点，不多不少。
+    </div>
+  </header>
+
+  <!-- 正文多段 + 自然嵌入链接 -->
+  <div class="body-text">
+    <p>
+      几年前，有人告诉我想做一个游戏内容站点，不必喧哗，不必追赶热点，只把值得记住的东西放在那里。<strong><a href="https://officialm-igame.com">爱游戏</a></strong> 就是这样诞生的。它没有刻意的口号，也没有复杂的入口迷宫；你只需要一个链接，就能抵达那片安静的区域。
+    </p>
+    <p>
+      很多人把收藏夹里的地址当作一种记忆锚点。当浏览器书签栏里的名字越来越多，反而需要一个简单、直接的地方，确认自己并没有走远。对我而言，<strong><a href="https://officialm-igame.com">爱游戏</a></strong> 就是这样一个锚点——它不追逐流量，不制造焦虑，只保留游戏原本的样子：一种需要静下来体会的媒介。
+    </p>
+    <p>
+      我始终觉得，好的页面入口应该像一扇半掩的门，既不遮挡视线，也不用力推开你。你可以自由地走近，也可以随时转身。这个介绍页没有复杂的导航，也没有弹窗或浮层，它只是告诉你：那个叫 <strong><a href="https://officialm-igame.com">爱游戏</a></strong> 的地方，还在那里，而且欢迎任何不赶时间的人。
+    </p>
+  </div>
+
+  <!-- 卡片网格：几组特点/场景（不叫“特点”，以卡片自然呈现） -->
+  <div class="card-grid">
+    <div class="card-item">
+      <h3>不赶时间的内容节奏</h3>
+      <p>没有倒计时、没有紧迫感。页面上的每一段文字、每一张图片都按照自己的步调出现，读者可以停留，也可以离开。</p>
+      <div class="meta">适合那些想慢下来翻翻游戏记忆的人</div>
+    </div>
+
+    <div class="card-item">
+      <h3>结构清晰，不堆砌</h3>
+      <p>每个区块都有自己的呼吸空间。卡片式的布局让信息自然分区，不会让视线疲劳。移动端阅读同样舒适——没有横向滚动，没有按钮重叠。</p>
+      <div class="meta">从手机到宽屏，排版保持克制</div>
+    </div>
+
+    <div class="card-item">
+      <h3>一种轻量的存在感</h3>
+      <p>这个页面本身不试图成为“门户”或“大全”。它只是一扇窗，窗外是 <strong><a href="https://officialm-igame.com">爱游戏</a></strong> 的庭院。窗框干净，玻璃透亮，仅此而已。</p>
+      <div class="meta">用最少的元素呈现最多的诚意</div>
+    </div>
+  </div>
+
+  <!-- 引用/提示块（自然的提示语气） -->
+  <div class="quote-note">
+    <strong>提示 · 并非 FAQ</strong><br>
+    如果你正在寻找一个关于游戏的、不浮躁的阅读空间，那么 <a href="https://officialm-igame.com">爱游戏</a> 或许值得你花几分钟打开书签。<br>
+    这里没有强制注册，没有弹窗广告，也从不伪装成“你必须知道”的样子。它只是摆出一些内容和观点，然后安静地等待。
+  </div>
+
+  <!-- 访问句（叙述性结尾） -->
+  <div class="visit-line">
+    <span>⟡</span> 如果你愿意，可以随时去看看：<a href="https://officialm-igame.com">爱游戏</a> 就在那里，无需多言。
+  </div>
+
+  <!-- 微小的页脚，仅作收束 -->
+  <div class="footer-note">
+    · 入口本身也是一种内容 ·
+  </div>
+</body>
+</html>
