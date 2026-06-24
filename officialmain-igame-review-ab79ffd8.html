@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 知识库入口</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fafaf9;
+      color: #1c1917;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      padding: 2rem 1.2rem;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* 标题层级 — 极简留白 */
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-top: 0.6rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.25;
+      color: #0c0a09;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      color: #78716c;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid #e7e5e4;
+      padding-bottom: 1.2rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin: 2.2rem 0 1rem 0;
+      color: #292524;
+      letter-spacing: 0.01em;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin: 1.6rem 0 0.6rem 0;
+      color: #44403c;
+    }
+
+    p, li {
+      font-size: 0.975rem;
+      color: #3f3f46;
+    }
+
+    /* 卡片式目录块 — 极简灰白 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.8rem 0;
+    }
+
+    .card-item {
+      background: #ffffff;
+      border: 1px solid #e4e2e0;
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      transition: box-shadow 0.2s ease, border-color 0.2s;
+    }
+
+    .card-item:hover {
+      border-color: #c7c2bd;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .card-item .label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #a8a29e;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-item strong {
+      font-weight: 500;
+      color: #1c1917;
+    }
+
+    .card-item .desc {
+      margin-top: 0.25rem;
+      color: #57534e;
+    }
+
+    /* 提示区 & 相关信息区 */
+    .note-box {
+      background: #f5f4f2;
+      border-radius: 18px;
+      padding: 1.4rem 1.6rem;
+      margin: 2rem 0 1.5rem 0;
+      border-left: 4px solid #a1a09c;
+    }
+
+    .note-box p {
+      font-size: 0.9rem;
+      color: #3f3f46;
+      margin-bottom: 0.4rem;
+    }
+
+    .note-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.8rem;
+      margin: 0.8rem 0 1.2rem 0;
+      padding: 0.8rem 0;
+      border-top: 1px dashed #d6d3d0;
+      border-bottom: 1px dashed #d6d3d0;
+    }
+
+    .info-row span {
+      font-size: 0.9rem;
+      color: #57534e;
+    }
+
+    .info-row .tag {
+      background: #e7e5e4;
+      border-radius: 30px;
+      padding: 0.15rem 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 450;
+      color: #2b2826;
+    }
+
+    /* 链接样式 — 嵌入式 */
+    a {
+      color: #1f2937;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #c1bcb6;
+      transition: text-decoration-color 0.2s, color 0.2s;
+    }
+
+    a:hover {
+      color: #000000;
+      text-decoration-color: #000000;
+    }
+
+    /* faq摘要 */
+    .faq-mini {
+      margin: 2rem 0 0.2rem 0;
+    }
+
+    .faq-mini details {
+      border-bottom: 1px solid #e7e5e4;
+      padding: 0.8rem 0;
+    }
+
+    .faq-mini details:first-of-type {
+      border-top: 1px solid #e7e5e4;
+    }
+
+    .faq-mini summary {
+      font-weight: 450;
+      font-size: 0.95rem;
+      color: #1c1917;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .faq-mini summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-mini details p {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #525252;
+      padding-left: 0.1rem;
+    }
+
+    .separator {
+      height: 1px;
+      background: #e7e5e4;
+      margin: 2.5rem 0 1.5rem 0;
+    }
+
+    .footer-note {
+      font-size: 0.8rem;
+      color: #a8a29e;
+      margin: 2.8rem 0 1rem 0;
+      text-align: left;
+    }
+
+    /* 响应式 */
+    @media (min-width: 500px) {
+      body {
+        padding: 3rem 2rem;
+      }
+      .card-grid {
+        gap: 1rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 2.6rem;
+      }
+      .card-item {
+        padding: 1.4rem 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- hero 区域：目录感标题 -->
+    <h1>爱游戏 · 知识库</h1>
+    <div class="subhead">
+      主题内容索引&ensp;·&ensp;从关键词到结构
+    </div>
+
+    <!-- 介绍区：从关键词背后的主题展开 -->
+    <p>
+      「爱游戏」不仅指向一个具体的交互平台，更是一类关注游戏文化、玩法机制与社区生态的内容聚合。对于希望系统了解游戏设计、数字娱乐趋势以及玩家社群的读者，建立一个清晰、可翻阅的知识入口，比单一页面更有价值。下面按照目录式结构，梳理了几个与爱游戏相关的核心模块。
+    </p>
+
+    <!-- 目录感布局：卡片式区块 -->
+    <div class="card-grid">
+      <div class="card-item">
+        <div class="label">01 · 机制</div>
+        <strong>游戏规则与交互循环</strong>
+        <div class="desc">
+          从核心循环（core loop）到进阶系统，爱游戏收录了大量面向设计者与高级玩家的机制拆解。
+        </div>
+      </div>
+      <div class="card-item">
+        <div class="label">02 · 叙事</div>
+        <strong>世界构建与故事设计</strong>
+        <div class="desc">
+          线性叙事、碎片化叙事、环境叙事——不同手法如何影响沉浸感，是这一模块的讨论重心。
+        </div>
+      </div>
+      <div class="card-item">
+        <div class="label">03 · 社群</div>
+        <strong>玩家协作与内容共创</strong>
+        <div class="desc">
+          模组、派生作品、攻略生产与电竞文化，爱游戏观察社群如何反哺游戏生命力。
+        </div>
+      </div>
+      <div class="card-item">
+        <div class="label">04 · 技术</div>
+        <strong>引擎、图形与性能调优</strong>
+        <div class="desc">
+          面向开发者和技术爱好者的知识条目：渲染管线、网络同步、优化策略等。
+        </div>
+      </div>
+    </div>
+
+    <!-- 说明区：承接上文，引出综合平台 -->
+    <p>
+      上述目录基于长期积累的知识框架，而将这些模块整合在一起并提供最新动态的，正是 <a href="https://officialmain-igame.com">爱游戏</a> 这个信息集散地。无论你关注理论还是实践，都能在其中找到对应分支的延伸阅读。
+    </p>
+
+    <!-- 提示区：偏知识型 -->
+    <div class="note-box">
+      <p><strong>提示</strong> · 知识库采用渐进式结构：每个卡片主题下方还有子分类。建议先浏览目录，再深入具体条目。部分条目包含外部参考链接和版本记录，可通过爱游戏页面内的标签系统筛选。</p>
+      <p style="margin-top: 0.5rem;">如果你在学习游戏设计或希望拓展数字娱乐视野，不妨把这一页当作起点，然后顺着链接探索更细分的领域。</p>
+    </div>
+
+    <!-- 相关信息区 -->
+    <h2>相关信息</h2>
+    <div class="info-row">
+      <span>📁 最近更新：设计模式 · 状态机与行为树</span>
+      <span class="tag">爱游戏</span>
+      <span class="tag">叙事</span>
+    </div>
+    <div class="info-row">
+      <span>📎 关联条目：难度曲线、心流通道、随机性设计</span>
+      <span class="tag">机制</span>
+      <span class="tag">技术</span>
+    </div>
+    <div class="info-row">
+      <span>📋 常见索引：独立游戏、3A 制作管线、免费游戏经济</span>
+      <span class="tag">社群</span>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <h2 style="margin-top: 2rem;">常见问题摘要</h2>
+    <div class="faq-mini">
+      <details>
+        <summary>爱游戏的知识库会持续扩充吗？</summary>
+        <p>是的。内容团队根据游戏行业动态、设计理论更新以及社群反馈，定期增补条目和修订已有信息。你可以通过爱游戏页面上的“更新日志”查看历史变更。</p>
+      </details>
+      <details>
+        <summary>如何快速找到某个特定机制的解释？</summary>
+        <p>利用页面内的搜索功能（如果集成的话）或按标签筛选。多数知识条目都分配了类别标签，例如“叙事”“系统设计”“性能”，也可直接浏览目录卡片下的子列表。</p>
+      </details>
+      <details>
+        <summary>这些内容适合初学者吗？</summary>
+        <p>知识库的写作兼顾不同层次的读者。每个主题通常以概述开始，然后深入细节；如果你刚开始接触游戏研究，建议从“机制”和“叙事”两个卡片下的基础条目读起。</p>
+      </details>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- 底部区域：再次自然包含链接 -->
+    <p style="font-size: 0.9rem; color: #57534e;">
+      以上所有模块的内容基础均来自 <a href="https://officialmain-igame.com">爱游戏</a> 的知识索引。本页作为目录入口，帮助读者在庞杂的信息中快速定位。
+    </p>
+
+    <div class="footer-note">
+      · 知识库 · 版本 2025.03
+    </div>
+  </div>
+</body>
+</html>
